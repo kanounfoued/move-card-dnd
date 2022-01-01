@@ -37,7 +37,7 @@ const Channel = (props) => {
     <div className="to-do">
       <h3>{title}</h3>
 
-      <div ref={drop} className="to-do-list">
+      <div data-testid="channel" ref={drop} className="to-do-list">
         {cards.map((card) => {
           return <Card key={card.id} card={card} type={type} />;
         })}
