@@ -71,3 +71,46 @@ test("test Channel's title with undefined title", function () {
 
   expect(screen.queryByText(/to do/i)).toBe(null);
 });
+
+describe('Test the list of Cards inside Channel', function () {
+  test('test Channel with no cards in the channel', function () {
+    const props = {
+      type: 'to-do',
+      cards: [],
+      addCard: () => {},
+    };
+
+    render(
+      <DndProvider backend={HTML5Backend}>
+        <Channel {...props} />
+      </DndProvider>,
+    );
+
+    expect(screen.queryByTestId('channel').children.length).toBe(0);
+  });
+
+  test('test Channel with list of cards', function () {
+    const props = {
+      type: 'to-do',
+      cards: [{ id: 'title 1', title: 'title 1' }],
+      cards: [{ id: 'title 2', title: 'title 2' }],
+      addCard: () => {},
+    };
+
+    render(
+      <DndProvider backend={HTML5Backend}>
+        <Channel {...props} />
+      </DndProvider>,
+    );
+
+    expect(screen.queryByTestId('channel').children.length).toBe(props.cards.length);
+
+    const cards = props.cards.map((card) => {
+      return screen.queryByText(card.title);
+    });
+
+    cards.forEach((element, index) => {
+      expect(element.textContent).toBe(props.cards[index].title);
+    });
+  });
+});
