@@ -92,8 +92,10 @@ describe('Test the list of Cards inside Channel', function () {
   test('test Channel with list of cards', function () {
     const props = {
       type: 'to-do',
-      cards: [{ id: 'title 1', title: 'title 1' }],
-      cards: [{ id: 'title 2', title: 'title 2' }],
+      cards: [
+        { id: 'title 1', title: 'title 1' },
+        { id: 'title 2', title: 'title 2' },
+      ],
       addCard: () => {},
     };
 
