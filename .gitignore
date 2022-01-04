@@ -2,3 +2,5 @@
 .env
 /build
 /dist
+
+/coverage
